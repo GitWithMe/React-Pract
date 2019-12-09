@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- html code -->
+<div id="p1"></div>
+<!-- html code -->
+
+<!-- css  -->
+<style type="text/css">
+.person{
+  display: inline-block;
+  margin: 10px;
+  border:3px solid #eee;
+  box-shadow: 0 7px 7px #ccc;
+  width: 200px;
+  padding: 20px;
+}	
+</style>
+<!-- css -->
+
+<!-- Javascript Code -->
+<script type="text/javascript" src="classesES7.js"></script>
+<script type="text/javascript">
+function Person(props){ //Props is used to make values dynamic
+  return(
+  <div className = "person">
+  <h1>{props.name}</h1> ///Accesses the value in app "name" variable
+  <p>Your Age: {props.age}</p> ///Accesses the value in app "age" variable
+</div>
+  );
+}
+
+///Used to wrap the required js in a single variable
+var app = (  
+<div>
+  <Person name="Namit" age="23" />
+  <Person name="Krrish" age="18" />
+  </div>
+);
+ReactDOM.render(app , document.querySelector("#app")); 
+</script>
+<!-- Javascript Code -->
+</body>
+</html>

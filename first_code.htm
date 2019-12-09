@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- html code -->
+<div id="p1"></div>
+<!-- html code -->
+
+<!-- css  -->
+<style type="text/css">
+.person{
+  display: inline-block;
+  margin: 10px;
+  border:3px solid #eee;
+  box-shadow: 0 7px 7px #ccc;
+  width: 200px;
+  padding: 20px;
+}	
+</style>
+<!-- css -->
+
+<!-- Javascript Code -->
+<script type="text/javascript">
+	function Person(){ 
+  return(
+  	//This code which seems to be HTML is actually called "JSX"
+  <div className = "person">
+  <h1>Namit</h1>
+  <p>Your Age: 23</p>
+</div>
+  );
+}
+
+/// Renders the react component into the DOM ie Person function is rendered at the Div who's id is p1 in the HTML File
+ReactDOM.render(<Person />, document.querySelector("#p1")); 
+</script>
+<!-- Javascript Code -->
+</body>
+</html>
