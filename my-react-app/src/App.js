@@ -14,7 +14,15 @@ class App extends Component {
   }
 
   myClickButton = () =>{
-    alert("OK Boomer!");
+    this.setState({ //changes the state defined above
+     person: [
+    {name:"Namit Dhupar", age: 23},
+    {name:"Krrish", age: 17},
+    {name:"Tarun", age: 50},
+    {name:"Meenu", age: 48},
+    {name:"Cherry", age: 3}
+    ] 
+    })
   };
 
   render() { //here this refers to the class App
