@@ -1,10 +1,11 @@
 import React from 'react';
 const person = (props) =>{ //Props is used when the Psn tag has attributes
-	return (
+	return ( //2 way binding in the input field
         <div>
-		<p>Hi, My name is {props.name} and my age is {props.age} years old</p>
+		<p onClick={props.click}>Hi, My name is {props.name} and my age is {props.age} years old</p>
 		<p>{props.children}</p>
-		</div>
+		<input type='text' onChange={props.changed} value={props.name} />
+		</div> 
 		);
 };
 
