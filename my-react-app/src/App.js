@@ -10,7 +10,8 @@ class App extends Component {
     {name:"Tarun", age: 50},
     {name:"Meenu", age: 48},
     {name:"Cherry", age: 3}
-    ]
+    ],
+    showPerson: false // state for toggling an event
   }
 
   myClickButton = (newName) =>{ //Used to bind the states like in onClick event 
@@ -37,12 +38,28 @@ class App extends Component {
     })
   }
 
+  togglePerson = () =>{
+    const doesShow = this.state.showPerson; //This stores the value of showPerson state
+    this.setState({
+      showPerson: !doesShow
+    }); //Toggles between the showPerson boolean (T/F)
+  }
+
   render() { //here this refers to the class App
     //
-    return (
-      <div className="App">
-      <button onClick = {this.myClickButton.bind(this, "Baby Yoda")}>yoRhA</button>
-        <h1>Vadim Blyat!</h1> 
+    const style = { //Used for inline styling
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
+    //Used to toggle
+    let person = null; //null by default 
+    if(this.state.showPerson){  //if true
+      person = (
+       <div>
         <Prsn
         name = {this.state.person[0].name} 
         age = {this.state.person[0].age}
@@ -60,6 +77,16 @@ class App extends Component {
         <Prsn 
         name = {this.state.person[4].name} 
         age = {this.state.person[4].age}>I am Dogu</Prsn>
+        </div>
+        );
+   }
+      //Calling the person variable of the render method in the second button
+    return (
+      <div className="App">
+      <button style={style} onClick = {this.myClickButton.bind(this, "Baby Yoda")}>Change Name</button>
+      <h1>React Practice!</h1>
+      <button style={style} onClick = {this.togglePerson}>Toggle People</button>
+      {person}
       </div>
     );
   }
