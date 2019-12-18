@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Prsn from './Person/Person.js';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   state = { //Used to make the props more dynamic
@@ -43,12 +44,17 @@ class App extends Component {
 
   render() { //here this refers to the class App
     //
-    const style = { //Used for inline styling
-      backgroundColor: 'white',
+    const style = { //Used for inline styling and hover property is only because of radium
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover':{
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     //Used to toggle
@@ -57,7 +63,7 @@ class App extends Component {
       person = (
        <div>
        {this.state.person.map((person, index) => { //creating a list by dynamically mapping each element of person array along with their index into the jsx code
-          return <Prsn style = {style}
+          return <Prsn
           name = {person.name}
           age = {person.age}
           key = {person.id /*Identify the array elements uniquely*/} 
@@ -67,17 +73,36 @@ class App extends Component {
        })}
        </div>
         );
+      style.backgroundColor = 'red';
+      style[':hover'] = { //Used with the help of radium
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
    }
+
+   //Changind the css dynamically
+   let classes = []; //empty array
+   if(this.state.person.length <=3){
+    classes.push('red');// classes = ['red']; the red class is defined in App.css
+   }
+   if(this.state.person.length <=2){
+    classes.push('bold');// classes = ['red','bold']; the bold class is defined in App.css
+   }
+      //join converts array to string
+      //hence className = "red"/"bold"
       //Calling the person variable of the render method in the second button
+      //Media queries requires StyleRoot component 
     return (
+      <StyleRoot>
       <div className="App">
-      <button style={style}>Change Name</button>
       <h1>React Practice!</h1>
+      <p className={classes.join(' ')}>4 core 4 thread processors can still kinda run games at 60fps</p>
       <button style={style} onClick = {this.togglePerson}>Toggle People</button>
       {person}
       </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
