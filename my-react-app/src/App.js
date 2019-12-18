@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Prsn from './Person/Person.js';
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
+
+//alt here used by StyledButton tag and is exclusive to styled-components package
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover{
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = { //Used to make the props more dynamic
@@ -44,19 +58,6 @@ class App extends Component {
 
   render() { //here this refers to the class App
     //
-    const style = { //Used for inline styling and hover property is only because of radium
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
     //Used to toggle
     let person = null; //null by default 
     if(this.state.showPerson){  //if true
@@ -73,11 +74,6 @@ class App extends Component {
        })}
        </div>
         );
-      style.backgroundColor = 'red';
-      style[':hover'] = { //Used with the help of radium
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
    }
 
    //Changind the css dynamically
@@ -90,19 +86,17 @@ class App extends Component {
    }
       //join converts array to string
       //hence className = "red"/"bold"
+      //The alt here is used by styled-components for dynamic styling
       //Calling the person variable of the render method in the second button
-      //Media queries requires StyleRoot component 
     return (
-      <StyleRoot>
       <div className="App">
       <h1>React Practice!</h1>
       <p className={classes.join(' ')}>4 core 4 thread processors can still kinda run games at 60fps</p>
-      <button style={style} onClick = {this.togglePerson}>Toggle People</button>
+      <StyledButton alt = {this.state.showPerson} onClick = {this.togglePerson}>Toggle People</StyledButton>
       {person}
       </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
