@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Prsn from '../Components/Persons/Person/Person.js';
+import Prsn from '../Components/Persons/Person/Person';
 
 class App extends Component {
   state = { //Used to make the props more dynamic
