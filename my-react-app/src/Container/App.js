@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Prsn from './Person/Person.js';
+import Persons from '../Components/Persons/Persons';
 import styled from 'styled-components';
 
 //alt here used by StyledButton tag and is exclusive to styled-components package
@@ -17,6 +17,7 @@ const StyledButton = styled.button`
   }
 `;
 
+/***************CLASS BASED COMPONENTS************/
 class App extends Component {
   state = { //Used to make the props more dynamic
     person: [
@@ -29,6 +30,8 @@ class App extends Component {
     showPerson: false // state for toggling an event
   }
 
+
+/***************FUNCTIONS BASED COMPONENTS************/
   deletePerson = (personIndex) =>{
    const person = [...this.state.person]; //Copying the person array from the state object
    person.splice(personIndex,1); //
@@ -61,19 +64,13 @@ class App extends Component {
     //Used to toggle
     let person = null; //null by default 
     if(this.state.showPerson){  //if true
-      person = (
-       <div>
-       {this.state.person.map((person, index) => { //creating a list by dynamically mapping each element of person array along with their index into the jsx code
-          return <Prsn
-          name = {person.name}
-          age = {person.age}
-          key = {person.id /*Identify the array elements uniquely*/} 
-          click = {() => this.deletePerson(index) /*delete the particular index clicked on*/}
-          changed = {(event) => this.myNameChange(event, person.id)}
-          />
-       })}
-       </div>
-        );
+      person = ( //We use the Persons tag because the of the import Persons
+      <div>
+       <Persons person = {this.state.person} 
+       clicked = {this.deletePerson} 
+       changed = {this.myNameChange}/>
+      </div>
+    );
    }
 
    //Changind the css dynamically
@@ -90,7 +87,7 @@ class App extends Component {
       //Calling the person variable of the render method in the second button
     return (
       <div className="App">
-      <h1>React Practice!</h1>
+      <h1>{this.props.appTitle}</h1>
       <p className={classes.join(' ')}>4 core 4 thread processors can still kinda run games at 60fps</p>
       <StyledButton alt = {this.state.showPerson} onClick = {this.togglePerson}>Toggle People</StyledButton>
       {person}
