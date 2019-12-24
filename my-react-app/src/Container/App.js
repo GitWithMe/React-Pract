@@ -19,6 +19,12 @@ const StyledButton = styled.button`
 
 /***************CLASS BASED COMPONENTS************/
 class App extends Component {
+  
+  constructor(props){ //Using a constructor to initialise a state
+    super(props); //To get the Component to work
+    console.log('[App.js] constructor');
+  } 
+
   state = { //Used to make the props more dynamic
     person: [
     {id:"1", name:"Namit", age: 23},
@@ -62,13 +68,14 @@ class App extends Component {
   render() { //here this refers to the class App
     //
     //Used to toggle
+    console.log('[App.js] rendering....');
     let person = null; //null by default 
     if(this.state.showPerson){  //if true
       person = ( //We use the Persons tag because the of the import Persons
       <div>
        <Persons person = {this.state.person} 
        clicked = {this.deletePerson} 
-       changed = {this.myNameChange}/>
+       changed = {this.myNameChange /*This came from Persons.js*/}/>
       </div>
     );
    }
