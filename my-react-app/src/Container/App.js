@@ -36,6 +36,20 @@ class App extends Component {
     showPerson: false // state for toggling an event
   }
 
+/********DEMONSTRATIONS ALL THE LIFECYCLES(WHEN STATES CHANGE)*****/
+
+componentDidMount(){ //This gets invoked when all the elements have properly rendered in the page
+  console.log("[App.js] componentDidMount");
+}
+
+shouldComponentUpdate(nextProps, nextState){  //Gets invoked before the state updates/ updates reflect on the webpage
+  console.log("[App.js] shouldComponentUpdate");
+  return true; //Return false when the there should be no update in the component
+}
+
+componentDidUpdate(){ //Gets invoked after the state updates/Changes
+  console.log("[App.js] componentDidUpdate");
+}
 
 /***************FUNCTIONS BASED COMPONENTS************/
   deletePerson = (personIndex) =>{

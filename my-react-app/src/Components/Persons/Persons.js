@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Prsn from './Person/Person';
 
 class Persons extends Component{
-	/********DEMONSTRATIONS ALL THE LIFECYCLES*****/
+	/********DEMONSTRATIONS ALL THE LIFECYCLES(WHEN PROPS CHANGE)*****/
 /*1.)*/ static getDerivedStateFromProps(props,state){ //Gets invoked when New Props are to be introduced
   console.log('[Persons.js] getDerivedStateFromProps');
   return state;
